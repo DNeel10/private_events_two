@@ -1,0 +1,9 @@
+<h1><%= @event.title %></h1>
+
+<p>Event hosted by: <%= @event.creator.email %></p>
+
+<p>Date: <%= @event.date %></p>
+
+<p>Time: <%= @event.time %></p>
+
+<%= button_to "Attend Event", attendances_path, params: { "attendances" => { attended_event_id: @event } } %>

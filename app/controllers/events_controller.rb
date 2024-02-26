@@ -10,7 +10,18 @@ class EventsController < ApplicationController
   end
 
   def create
-    @event = current_user.create_event(event_params)
+    @event = current_user.events.create(event_params)
+
+    if @event.save
+      redirect_to event_path(@event)
+    else
+      flash.now[:notice] = "Event not saved. Please verify your informaiton and try again."
+      render :new, status: :unprocessable_entity
+    end
+  end
+
+  def show
+    @event = Event.find(params[:id])
   end
 
   private

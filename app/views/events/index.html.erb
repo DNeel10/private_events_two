@@ -4,10 +4,10 @@
 
   <div>
     <% @events.each do |event| %>
-      <%= event %>
+      <%= link_to event.title, event %>
     <% end %>
   </div>
 
-</div>
+</div><br>
 
 <%= link_to "Create new Event", new_event_path %>

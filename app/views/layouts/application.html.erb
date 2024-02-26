@@ -11,6 +11,13 @@
   </head>
 
   <body>
+    <p>
+      <% if user_signed_in? %>
+      You are logged in as: <%= current_user.email %> | <%= link_to "Log Out", destroy_user_session_path, 
+                                                                                data: { turbo_method: :delete } %></p>
+      <% else %>
+        <%= link_to "Sign In", new_user_session_path %>
+      <% end %>
     <p class="notice"><%= notice %></p>
     <p class="alert"><%= alert %></p>
     
