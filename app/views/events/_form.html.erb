@@ -1,0 +1,7 @@
+<%= form_with model: @event do |f| %>
+  <%= f.label :title %>
+  <%= f.text_field :title, placeholder: "Event Title" %>
+
+  <%= f.submit %>
+
+<% end %>
