@@ -4,9 +4,20 @@ class AttendancesController < ApplicationController
   def create
     @event = Event.find(params[:attendances][:attended_event_id])
     @attendance = current_user.attendances.create(attendance_params)
+
+    if @attendance.save
+      redirect_to @event
+    else
+      flash.now[:notice] = "You were not added to the attendee list"
+      render 'events/show', status: :unprocessable_entity
+    end
   end
 
-  def delete
+  def destroy
+    @attendance = Attendance.find(params[:id])
+    @attendance.destroy
+
+    redirect_to current_user
   end
 
   private

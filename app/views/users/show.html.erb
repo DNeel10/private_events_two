@@ -8,3 +8,14 @@
   </ul>
 </div>
 
+<h2>Events you are attending</h2>
+<div>
+  <ul>
+    <% @user.attendances.each do |attendance| %>
+      <li><%= link_to attendance.attended_event.title, attendance.attended_event.title %> | 
+          <%= link_to "Cancel Attendance", attendance_path(attendance), method: :delete, data: {
+              turbo_method: :delete,
+              turbo_confirm: "Are you sure you no longer wish to attend this event?"
+            } %></li>
+    <% end %>
+  </ul>

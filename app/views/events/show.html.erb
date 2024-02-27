@@ -6,4 +6,17 @@
 
 <p>Time: <%= @event.time %></p>
 
-<%= button_to "Attend Event", attendances_path, params: { "attendances" => { attended_event_id: @event } } %>
+<% if @event.attendees.include?(current_user)%>
+  <p>You are attending this Event</p>
+<% else %>
+  <%= button_to "Attend Event", attendances_path, params: { "attendances" => { attended_event_id: @event.id } } %>
+<% end %>
+
+<div>
+  <h2>Current Attendees</h2>
+  <ul>
+    <% @event.attendees.each do |attendee| %>
+      <li><%= attendee.email %></li>
+    <% end %>
+  </ul>
+</div>
