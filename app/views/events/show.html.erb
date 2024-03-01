@@ -20,3 +20,9 @@
     <% end %>
   </ul>
 </div>
+
+<% if @event.creator == current_user %>
+  <%= link_to "Edit Event", edit_event_path(@event) %> | <%= link_to "Cancel Event", event_path(@event), method: :delete, data: { 
+                                                                                                                turbo_method: :delete, 
+                                                                                                                turbo_confirm: "Are you sure you want to cancel?" } %>
+<% end %>

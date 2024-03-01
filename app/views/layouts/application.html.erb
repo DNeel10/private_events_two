@@ -11,16 +11,21 @@
   </head>
 
   <body>
-    <p>
+    <nav>
+
+
       <% if user_signed_in? %>
-      You are logged in as: <%= current_user.email %> | <%= link_to "Log Out", destroy_user_session_path, 
-                                                                                data: { turbo_method: :delete } %></p>
+        You are logged in as: <%= link_to current_user.email, current_user %> | <%= link_to "Log Out", destroy_user_session_path, 
+                                                                                data: { turbo_method: :delete } %> |
       <% else %>
-        <%= link_to "Sign In", new_user_session_path %>
+        <%= link_to "Sign In", new_user_session_path %> |
       <% end %>
+      <%= link_to "Home", events_path %> | <%= link_to "Create New Event", new_event_path %> |       
+ 
+    </nav>
     <p class="notice"><%= notice %></p>
     <p class="alert"><%= alert %></p>
-    
+
     <%= yield %>
   </body>
 </html>
