@@ -10,9 +10,9 @@
 
 <h2>Events you are attending</h2>
 <div>
-  <h2>Upcoming Events</h2>
+  <h2>All Upcoming Events</h2>
   <ul>
-    <% @user.attendances.each do |attendance| %>
+    <% @user.attendances.upcoming_events.each do |attendance| %>
       <li><%= link_to attendance.attended_event.title, attendance.attended_event %> | 
           <%= link_to "Cancel Attendance", attendance_path(attendance),  method: :delete, data: {
               turbo_method: :delete,
@@ -21,19 +21,14 @@
     <% end %>
   </ul>
 </div><br>
- 
+
 <div>
-  <h2>Past Events</h2>
+  <h2>All Upcoming Events</h2>
   <ul>
-    <% @user.attended_events.past_events.each do |event| %>
-      <li><%= link_to event.title, event %></li>
+    <% @user.attendances.past_events.each do |attendance| %>
+      <li><%= link_to attendance.attended_event.title, attendance.attended_event %>
     <% end %>
   </ul>
 </div><br>
 
-<% @user.attendances.each do |attendance| %>
-  <p><%= attendance.id %>
-  <p><%= attendance.attendee_id %>
-  <p><%= attendance.attended_event_id %>
-<% end %>
 

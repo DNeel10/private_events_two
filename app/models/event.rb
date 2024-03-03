@@ -1,6 +1,6 @@
 class Event < ApplicationRecord
-  scope :upcoming_events, -> { where("date >= ?", DateTime.now) }
-  scope :past_events, -> { where("date <= ?", DateTime.now) }
+  scope :upcoming, -> { where("date >= ?", DateTime.now) }
+  scope :past, -> { where("date <= ?", DateTime.now) }
 
   validates :title, presence: true
   validates :date, presence: true
